@@ -42,7 +42,7 @@ public class Main {
 //        System.out.println("level of node " + nodeD.data + " " + newTree.calculateNodeHeight(newTree.root, nodeD));
 //        newTree.calculateNodeHeight(newTree.root, nodeB);
 
-        System.out.println("All leaf nodes are " + newTree.getAllLeafNode(newTree.root));
+        newTree.getAllLeafNode(newTree.root);
         System.out.println("All Non leaf nodes are " + newTree.getAllNonLeafNode(nodeK));
 
 //        newTree.getParentNode(newTree.root, "C");
