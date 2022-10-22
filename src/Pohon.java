@@ -102,7 +102,7 @@ public class Pohon<T> {
         }
     }
 
-    public LinkedList<Node> getAllNonLeafNode(Node<T> parentNode){
+    public void getAllNonLeafNode(Node<T> parentNode){
         LinkedList<Node> currentLinkedList = new LinkedList<>();
 
         for(Node<T> currentNode : parentNode.children) {
@@ -113,7 +113,5 @@ public class Pohon<T> {
         for(Node<T> currentNode : currentLinkedList) {
             System.out.println("Non leaf nodes are : " + currentNode.data);
         }
-
-        return currentLinkedList;
     }
 }

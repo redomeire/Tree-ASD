@@ -32,19 +32,10 @@ public class Main {
 
         newTree.telusur(newTree.root);
 
-
-        //System.out.println("node parent yang dicari adalah : " + newTree.getParentNode(newTree.root, "C"));
-//        newTree.getParentNode(newTree.root, "C");
-//        newTree.getParentNode(newTree.root, "A");
-//        newTree.getParentNode(newTree.root, "B");
-
-//        System.out.println("level of node " + nodeB.data + " " + newTree.calculateNodeLevel(newTree.root, nodeB));
-//        System.out.println("level of node " + nodeD.data + " " + newTree.calculateNodeHeight(newTree.root, nodeD));
-//        newTree.calculateNodeHeight(newTree.root, nodeB);
-
+        // mencari semua leaf node
         newTree.getAllLeafNode(newTree.root);
-        System.out.println("All Non leaf nodes are " + newTree.getAllNonLeafNode(nodeK));
 
-//        newTree.getParentNode(newTree.root, "C");
+        // mencari semua non leaf node
+        newTree.getAllNonLeafNode(newTree.root);
     }
 }
