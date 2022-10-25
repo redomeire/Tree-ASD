@@ -32,10 +32,22 @@ public class Main {
 
         newTree.telusur(newTree.root);
 
+        // mencari level dari suatu node, misalkan node B
+        System.out.println("level of node b is "
+                + newTree.calculateNodeLevel(newTree.root, nodeB));
+
+//        System.out.println("height of node k is "
+//                + newTree.calculateNodeHeight(newTree.root, nodeK));
+
         // mencari semua leaf node
         newTree.getAllLeafNode(newTree.root);
 
         // mencari semua non leaf node
         newTree.getAllNonLeafNode(newTree.root);
+
+        // mencari semua node ancestor
+//        newTree.findAllNodeAncestor(newTree.root, nodeF);
+
+        newTree.findSiblingOfNode(newTree.root, "E");
     }
 }

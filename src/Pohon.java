@@ -54,26 +54,25 @@ public class Pohon<T> {
         }
     }
 
-    public int calculateNodeHeight(Node<T> parent, Node<T> currentNode){
-        int counter = this.level;
-
-        for(Node<T> current : parent.children) {
-            counter--;
-
-            if(currentNode.data == current.data) {
-                this.height = counter;
-                System.out.println("Height of the node is : " + counter);
-                break;
-            }
-
-            else calculateNodeHeight(current, currentNode);
-        }
-
-        return this.height;
-    }
+//    public int calculateNodeHeight(Node<T> parent, Node<T> currentNode){
+//        int counter = this.level;
+//
+//        for(Node<T> current : parent.children) {
+//            counter--;
+//
+//            if(currentNode.data == current.data) {
+//                this.height = counter;
+//                break;
+//            }
+//
+//            else calculateNodeHeight(current, currentNode);
+//        }
+//
+//        return this.height;
+//    }
 
     public int calculateNodeLevel(Node<T> parent, Node<T> currentNode){
-        int counter = 0;
+        int counter = 1;
 
         for(Node<T> current : parent.children) {
             counter++;
@@ -105,13 +104,60 @@ public class Pohon<T> {
     public void getAllNonLeafNode(Node<T> parentNode){
         LinkedList<Node> currentLinkedList = new LinkedList<>();
 
+        if(parentNode == this.root && this.root.children.size() != 0) {
+            currentLinkedList.add(parentNode);
+        }
+
         for(Node<T> currentNode : parentNode.children) {
-            if(currentNode.children.size() != 0) currentLinkedList.add(currentNode);
+            if(currentNode.children.size() != 0) {
+                currentLinkedList.add(currentNode);
+            }
+
             getAllNonLeafNode(currentNode);
         }
 
         for(Node<T> currentNode : currentLinkedList) {
             System.out.println("Non leaf nodes are : " + currentNode.data);
+        }
+    }
+
+//    public void findAllNodeAncestor(Node<T> parentNode, Node<T> searchedNode){
+//        LinkedList<Node> path = new LinkedList<>();
+//        path.add(this.root);
+//
+//        for(Node<T> currentNode : parentNode.children) {
+//            path.add(currentNode);
+//            if(currentNode.children.contains(searchedNode)) {
+//                path.add(searchedNode);
+//                break;
+//            }
+//
+//        }
+//
+//        if(!path.contains(searchedNode))
+//            System.out.println("Tree does not contain searched data!");
+//
+//        for (Node node : path) {
+//            System.out.println("path node adalah : " + node.data);
+//        }
+//    }
+
+    public void findSiblingOfNode(Node <T> parentNode, T data){
+        LinkedList<Node> siblings = new LinkedList<>();
+
+        for(Node<T> currentNode : parentNode.children) {
+            if(currentNode.data == data) {
+                siblings.addAll(parentNode.children);
+                break;
+            }
+            else findSiblingOfNode(currentNode, data);
+        }
+
+        //mencetak sibling saja
+        for (Node sibling : siblings) {
+            if (sibling.data != data) {
+                System.out.println("The sibling of node " + data + " is " + sibling.data);
+            }
         }
     }
 }
