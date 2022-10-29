@@ -31,11 +31,16 @@ public class Main {
         Node<String> nodeK = newTree.findNode(newTree.root, "K");
         Node<String> nodeC = newTree.findNode(newTree.root, "C");
 
+        // menelusuri node mulai dari root
         newTree.telusur(newTree.root);
 
-        // mencari level dari suatu node, misalkan node B
-        System.out.println("level of node k is "
-                + newTree.calculateNodeLevel(newTree.root, nodeK));
+        // mencari level dari suatu node, misalkan node K
+        System.out.println("level of node K is "
+                + newTree.calculateNodeLevel(newTree.root, "K", 1));
+
+        // mencari height dari suatu node, misalkan node B
+        System.out.println("height of node B is "
+                + newTree.calculateNodeHeight(newTree.root, "B", 1));
 
         // mencari semua leaf node
         newTree.getAllLeafNode(newTree.root);
@@ -43,14 +48,15 @@ public class Main {
         // mencari semua non leaf node
         newTree.getAllNonLeafNode(newTree.root);
 
-        // mencari semua node ancestor
-
         // mencari sibling dari node
-        System.out.println("\n======Sibling dari node=====");
+        System.out.println("\n======Sibling dari node=====\n");
         newTree.findSiblingOfNode(newTree.root, "C");
 
-        // menemukan node ancestor
-        newTree.findAllNodeAncestors(newTree.root, "A");
+        // menemukan parent dari node
+        newTree.getParentNode(newTree.root, "C");
+
+        // menemukan ancestor dari node
+        newTree.findAllNodeAncestors(newTree.root, "E");
 
     }
 }

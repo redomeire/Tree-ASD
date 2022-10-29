@@ -41,69 +41,42 @@ public class Pohon<T> {
         return null;
     }
 
-    public String getParentNode(Node<T> parent, T data){
-        Node<T> current = parent.children == null ? this.root : parent;
-        String parentData = "";
+    public Node<T> getParentNode(Node<T> parent, T data){
 
-        for(Node<T> currentNode : current.children) {
-            if(currentNode.data == data) {
-                parentData = (String) parent.data;
-                System.out.println("parent : " + parentData);
-                break;
-            }
+        Node<T> selectedNode = findNode(this.root, data);
 
-            else {
-                System.out.println("hauawaawa");
-                getParentNode(currentNode, data);
-            }
+        if(parent.children.contains(selectedNode)) return parent;
+
+        for(Node<T> currentNode : parent.children) {
+            Node<T> parentNode = getParentNode(currentNode, data);
+
+            if(parentNode != null) return parentNode;
         }
 
-        return parentData;
+        return null;
     }
 
-//    public int calculateNodeHeight(Node<T> parent, Node<T> currentNode){
-//        int counter = this.level;
-//
-//        for(Node<T> current : parent.children) {
-//            counter--;
-//
-//            if(currentNode.data == current.data) {
-//                this.height = counter;
-//                break;
-//            }
-//
-//            else calculateNodeHeight(current, currentNode);
-//        }
-//
-//        return this.height;
-//    }
+    public int calculateNodeHeight(Node<T> parent, T data ,int startCount){
+        Node<T> ancestorNode = null;
 
-    public int calculateNodeLevel(Node<T> parent, Node<T> currentNode){
-        int counter = 1;
-
-        for(Node<T> current : parent.children) {
-            counter++;
-            System.out.println("current : " + current.data);
-
-            if(current.children.size() != 0) {
-
-            }
+        if(!data.equals(this.root.data)) {
+            ancestorNode = getParentNode(parent, data);
+            startCount++;
         }
 
-//        for(Node<T> current : parent.children) {
-//            counter++;
-//
-//            if(currentNode.data == current.data) {
-//                this.level = counter;
-//                break;
-//            }
-//
-//            else calculateNodeLevel(current, currentNode);
-//        }
-//
-//        System.out.println("\ncounter " + counter);
-//
-        return counter;
+        if(ancestorNode != null) return calculateNodeLevel(this.root, ancestorNode.data, startCount);
+
+        return startCount;
+    }
+
+    public int calculateNodeLevel(Node<T> parent, T data, int startCount){
+        Node<T> ancestorNode = null;
+
+        if(!data.equals(this.root.data)) ancestorNode = getParentNode(parent, data);
+
+        if(ancestorNode != null) return calculateNodeLevel(this.root, ancestorNode.data, ++startCount);
+
+        return startCount;
     }
 
     public void getAllLeafNode(Node<T> parentNode){
@@ -139,54 +112,16 @@ public class Pohon<T> {
         }
     }
 
-//    public void findAllNodeAncestor(Node<T> parentNode, Node<T> searchedNode){
-//        LinkedList<Node> path = new LinkedList<>();
-//        path.add(this.root);
-//
-//        for(Node<T> currentNode : parentNode.children) {
-//            path.add(currentNode);
-//            if(currentNode.children.contains(searchedNode)) {
-//                path.add(searchedNode);
-//                break;
-//            }
-//
-//        }
-//
-//        if(!path.contains(searchedNode))
-//            System.out.println("Tree does not contain searched data!");
-//
-//        for (Node node : path) {
-//            System.out.println("path node adalah : " + node.data);
-//        }
-//    }
-
     public void findAllNodeAncestors(Node<T> parent, T data){
-        Node<T> searchedNode = findNode(parent, data);
-        System.out.println(getParentNode(this.root, searchedNode.data));
+        Node<T> ancestorNode = null;
 
-//        findAllNodeAncestors(this.root, (T) "B");
+        if(!data.equals(this.root.data))
+            ancestorNode = getParentNode(parent, data);
 
-        // error still happened
-//        for(Node<T> current : parent.children) {
-////            System.out.println("current : " + current.data);
-//            findAllNodeAncestors(current, data);
-//
-//            if(parent.children.contains(searchedNode))
-//                break;
-//        }
-//
-//        if(parent.children.contains(searchedNode)) {
-//            ancestor.add(parent);
-//        }
-//
-////        if(!ancestor.contains(this.root)) {
-////            findAllNodeAncestors(this.root, parent.data);
-////        }
-//
-//        for(Node<T> current : ancestor) {
-//            System.out.println(current.data);
-//        }
-
+        if(ancestorNode != null) {
+            System.out.println("Ancestors are : " + ancestorNode.data);
+            findAllNodeAncestors(this.root, ancestorNode.data);
+        }
     }
 
     public void findSiblingOfNode(Node <T> parentNode, T data){
