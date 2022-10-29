@@ -29,22 +29,36 @@ public class Main {
 
         // node K
         Node<String> nodeK = newTree.findNode(newTree.root, "K");
+        Node<String> nodeC = newTree.findNode(newTree.root, "C");
 
+        // menelusuri node mulai dari root
         newTree.telusur(newTree.root);
 
+        // mencari level dari suatu node, misalkan node K
+        System.out.println("level of node K is "
+                + newTree.calculateNodeLevel(newTree.root, "K", 1));
 
-        //System.out.println("node parent yang dicari adalah : " + newTree.getParentNode(newTree.root, "C"));
-//        newTree.getParentNode(newTree.root, "C");
-//        newTree.getParentNode(newTree.root, "A");
-//        newTree.getParentNode(newTree.root, "B");
+        // mencari height dari suatu node, misalkan node B
+//        System.out.println("height of node B is "
+//                + newTree.calculateNodeHeight(newTree.root, "H", 1));
 
-//        System.out.println("level of node " + nodeB.data + " " + newTree.calculateNodeLevel(newTree.root, nodeB));
-//        System.out.println("level of node " + nodeD.data + " " + newTree.calculateNodeHeight(newTree.root, nodeD));
-//        newTree.calculateNodeHeight(newTree.root, nodeB);
+        // mencari semua leaf node
+        newTree.getAllLeafNode(newTree.root);
 
-        System.out.println("All leaf nodes are " + newTree.getAllLeafNode(newTree.root));
-        System.out.println("All Non leaf nodes are " + newTree.getAllNonLeafNode(nodeK));
+        // mencari semua non leaf node
+        newTree.getAllNonLeafNode(newTree.root);
 
-//        newTree.getParentNode(newTree.root, "C");
+        // mencari sibling dari node
+        System.out.println("\n======Sibling dari node=====\n");
+        newTree.findSiblingOfNode(newTree.root, "C");
+
+        // menemukan parent dari node
+        newTree.getParentNode(newTree.root, "C");
+
+        // menemukan ancestor dari node
+        newTree.findAllNodeAncestors(newTree.root, "E");
+
+        // menemukan descendants dari node
+        newTree.findAllDescendantOfNode(nodeC);
     }
 }
