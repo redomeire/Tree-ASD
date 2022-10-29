@@ -2,8 +2,6 @@ import java.util.LinkedList;
 
 public class Pohon<T> {
     Node root;
-    int level;
-    int height = this.level;
 
     public Pohon(Node root){
         this.root = root;
@@ -54,19 +52,6 @@ public class Pohon<T> {
         }
 
         return null;
-    }
-
-    public int calculateNodeHeight(Node<T> parent, T data ,int startCount){
-        Node<T> ancestorNode = null;
-
-        if(!data.equals(this.root.data)) {
-            ancestorNode = getParentNode(parent, data);
-            startCount++;
-        }
-
-        if(ancestorNode != null) return calculateNodeLevel(this.root, ancestorNode.data, startCount);
-
-        return startCount;
     }
 
     public int calculateNodeLevel(Node<T> parent, T data, int startCount){
@@ -122,6 +107,16 @@ public class Pohon<T> {
             System.out.println("Ancestors are : " + ancestorNode.data);
             findAllNodeAncestors(this.root, ancestorNode.data);
         }
+    }
+
+    public void findAllDescendantOfNode(Node<T> parent){
+        if(parent != null) {
+            for (Node<T> currentNode : parent.children) {
+                System.out.println("descendants are : " + currentNode.data);
+                findAllDescendantOfNode(currentNode);
+            }
+        } else
+            System.out.println("parent cannot be null");
     }
 
     public void findSiblingOfNode(Node <T> parentNode, T data){

@@ -39,8 +39,8 @@ public class Main {
                 + newTree.calculateNodeLevel(newTree.root, "K", 1));
 
         // mencari height dari suatu node, misalkan node B
-        System.out.println("height of node B is "
-                + newTree.calculateNodeHeight(newTree.root, "B", 1));
+//        System.out.println("height of node B is "
+//                + newTree.calculateNodeHeight(newTree.root, "H", 1));
 
         // mencari semua leaf node
         newTree.getAllLeafNode(newTree.root);
@@ -58,5 +58,7 @@ public class Main {
         // menemukan ancestor dari node
         newTree.findAllNodeAncestors(newTree.root, "E");
 
+        // menemukan descendants dari node
+        newTree.findAllDescendantOfNode(nodeC);
     }
 }
